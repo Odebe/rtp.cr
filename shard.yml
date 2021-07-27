@@ -1,0 +1,19 @@
+name: rtp
+version: 0.1.0
+
+authors:
+  - Mihail Odebe <derpiranha@gmail.com>
+
+crystal: 1.0.0
+
+license: MIT
+
+targets:
+  client_example:
+    main: examples/client.cr
+  server_example:
+    main: examples/client.cr
+
+dependencies:
+  bindata:
+    github: spider-gazelle/bindata
