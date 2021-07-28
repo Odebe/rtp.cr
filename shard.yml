@@ -12,7 +12,9 @@ targets:
   client_example:
     main: examples/client.cr
   server_example:
-    main: examples/client.cr
+    main: examples/server.cr
+  parser_example:
+    main: examples/parser.cr
 
 dependencies:
   bindata:

@@ -1,3 +1,4 @@
+require "./rtp/parser.cr"
 require "./rtp/server.cr"
 require "./rtp/client.cr"
 

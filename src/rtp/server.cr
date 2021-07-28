@@ -1,5 +1,6 @@
 require "socket"
 require "./packet.cr"
+require "./parser.cr"
 
 module Rtp
   class Server
@@ -11,18 +12,13 @@ module Rtp
 
     def receive : Tuple(Socket::IPAddress, Packet)
       buffer = Bytes.new(@buffer_size)
-      memory = IO::Memory.new(buffer)
-
       _size, addr = @socket.receive(buffer)
-      {addr, memory.read_bytes(Packet)}
+      {addr, Parser.decode(buffer)}
     end
 
-    def send(packet : Packet, addr)
-      buffer = Bytes.new(@buffer_size)
-      memory = IO::Memory.new(buffer)
-
-      memory.write_bytes(packet)
-      @socket.send(buffer, addr)
+    def send(packet : Packet, addr)      
+      bytes = Parser.encode(packet)
+      @socket.send(bytes, addr)
     end
   end
 end
